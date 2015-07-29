@@ -1,5 +1,6 @@
 require 'active_support'
 require 'hosted_solr/api/solr_core'
+require 'hosted_solr/api/errors'
 require 'open-uri'
 require 'json'
 
@@ -9,8 +10,8 @@ module HostedSolr
       def initialize(api_token: nil, secret_token: nil)
         @api_token = api_token || ENV['HOSTED_SOLR_API_TOKEN']
         @secret_token = secret_token || ENV['HOSTED_SOLR_SECRET_TOKEN']
-        fail ArgumentError, 'Hosted Solr API token is missing' if @api_token.blank?
-        fail ArgumentError, 'Hosted Solr Secret token is missing' if @secret_token.blank?
+        fail APITokenMissingError, 'Please provide Hosted Solr API token or set HOSTED_SOLR_API_TOKEN environment variable.' if @api_token.nil?
+        fail SecretTokenMissingError, 'Please provide Hosted Solr Secret token or set HOSTED_SOLR_SECRET_TOKEN environment variable.' if @secret_token.nil?
       end
 
       def all_solr_cores
