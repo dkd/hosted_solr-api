@@ -8,10 +8,10 @@ module HostedSolr
   module API
     class Client
       def initialize(api_token: nil, secret_token: nil)
-        @api_token = api_token || ENV['HOSTED_SOLR_API_TOKEN']
-        @secret_token = secret_token || ENV['HOSTED_SOLR_SECRET_TOKEN']
-        fail APITokenMissingError, 'Please provide Hosted Solr API token or set HOSTED_SOLR_API_TOKEN environment variable.' if @api_token.nil?
-        fail SecretTokenMissingError, 'Please provide Hosted Solr Secret token or set HOSTED_SOLR_SECRET_TOKEN environment variable.' if @secret_token.nil?
+        @api_token = find_api_token(api_token)
+        @secret_token = find_secret_token(secret_token)
+        fail APITokenMissingError if @api_token.nil?
+        fail SecretTokenMissingError if @secret_token.nil?
       end
 
       def all_solr_cores
@@ -26,6 +26,20 @@ module HostedSolr
       end
 
       def destroy_core
+      end
+
+      private
+
+      def configuration
+        HostedSolr::API.configuration
+      end
+
+      def find_api_token(api_token = nil)
+        api_token || configuration.api_token || ENV['HOSTED_SOLR_API_TOKEN']
+      end
+
+      def find_secret_token(secret_token = nil)
+        secret_token || configuration.secret_token || ENV['HOSTED_SOLR_SECRET_TOKEN']
       end
     end
   end
