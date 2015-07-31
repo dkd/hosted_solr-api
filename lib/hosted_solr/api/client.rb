@@ -1,45 +1,38 @@
 require 'active_support'
-require 'hosted_solr/api/solr_core'
 require 'hosted_solr/api/errors'
-require 'open-uri'
-require 'json'
+require 'hosted_solr/api/has_configuration'
+require 'hosted_solr/api/solr_core'
+require 'hosted_solr/api/solr_cores_api_client'
 
 module HostedSolr
   module API
     class Client
-      def initialize(api_token: nil, secret_token: nil)
-        @api_token = find_api_token(api_token)
-        @secret_token = find_secret_token(secret_token)
-        fail APITokenMissingError if @api_token.nil?
-        fail SecretTokenMissingError if @secret_token.nil?
+      include HostedSolr::API::HasConfiguration
+
+      def initialize
+        fail APITokenMissingError if configuration.api_token.nil?
+        fail SecretTokenMissingError if configuration.secret_token.nil?
+        @api_client = SolrCoresAPIClient.new
       end
 
       def all_solr_cores
-        json_response = URI.parse("https://www.hosted-solr.com/api/solr_cores.json?api_token=#{@api_token}&secret_token=#{@secret_token}").read
-        solr_cores = JSON.parse(json_response)
-        solr_cores.map do |attributes|
-          SolrCore.from_hash(attributes)
+      end
+
+      def create_solr_core(solr_core)
+        fail ArgumentError, 'Error: SolrCore expected!' unless solr_core.is_a? SolrCore
+        @api_client.create solr_core
+      end
+
+      def destroy_solr_core(solr_core)
+        case solr_core
+        when Integer, String
+          id = solr_core
+        when SolrCore
+          id = solr_core.id
+        else
+          fail ArgumentError, 'Error: SolrCore or SolrCore id expected!'
         end
-      end
-
-      def create_solr_core
-      end
-
-      def destroy_core
-      end
-
-      private
-
-      def configuration
-        HostedSolr::API.configuration
-      end
-
-      def find_api_token(api_token = nil)
-        api_token || configuration.api_token || ENV['HOSTED_SOLR_API_TOKEN']
-      end
-
-      def find_secret_token(secret_token = nil)
-        secret_token || configuration.secret_token || ENV['HOSTED_SOLR_SECRET_TOKEN']
+        @api_client.destroy String(id)
       end
     end
   end

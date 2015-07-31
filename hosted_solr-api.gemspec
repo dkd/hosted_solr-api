@@ -42,4 +42,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'activemodel', '~> 4.2'
   spec.add_dependency 'activesupport', '~> 4.2'
+  spec.add_dependency 'active_rest_client'
 end
