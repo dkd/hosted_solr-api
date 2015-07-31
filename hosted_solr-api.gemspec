@@ -39,6 +39,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'coveralls'
   spec.add_development_dependency 'growl'
+  spec.add_development_dependency 'shoulda-matchers'
 
   spec.add_dependency 'activemodel', '~> 4.2'
   spec.add_dependency 'activesupport', '~> 4.2'

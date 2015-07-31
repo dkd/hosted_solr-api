@@ -4,7 +4,7 @@ group :rubocop_and_rspec, halt_on_fail: true do
     watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
   end
 
-  guard :rspec, cmd: 'bundle exec rspec' do
+  guard :rspec, cmd: 'bundle exec rspec', all_on_start: true, all_after_pass: true do
     require 'guard/rspec/dsl'
     dsl = Guard::RSpec::Dsl.new(self)
 
@@ -19,3 +19,5 @@ group :rubocop_and_rspec, halt_on_fail: true do
     dsl.watch_spec_files_for(ruby.lib_files)
   end
 end
+
+scope group: :rubocop_and_rspec

@@ -4,3 +4,4 @@ require 'coveralls'
 Coveralls.wear!
 
 require 'hosted_solr/api'
+require 'shoulda/matchers'
