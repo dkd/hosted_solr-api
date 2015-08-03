@@ -1,4 +1,7 @@
-# HostedSolr::Api
+# HostedSolr::API
+
+[![Gem Version](https://badge.fury.io/rb/hosted_solr-api.svg)](http://badge.fury.io/rb/hosted_solr-api) [![Build Status](https://travis-ci.org/dkd/hosted_solr-api.svg?branch=master)](https://travis-ci.org/dkd/hosted_solr-api) [![Coverage Status](https://coveralls.io/repos/dkd/hosted_solr-api/badge.svg?branch=master&service=github)](https://coveralls.io/github/dkd/hosted_solr-api?branch=master)
+
 
 This Rubygem allows convient access to [Hosted Solr](https://www.hosted-solr.com/) API. You can create new Solr Cores, check the status of your Solr Cores and destroy them as well.
 
