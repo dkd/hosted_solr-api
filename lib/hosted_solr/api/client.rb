@@ -16,11 +16,19 @@ module HostedSolr
       end
 
       def all_solr_cores
+        @api_client.all.map do |response_entry|
+          SolrCore.from_hash response_entry.to_hash
+        end
       end
 
       def create_solr_core(solr_core)
         fail ArgumentError, 'Error: SolrCore expected!' unless solr_core.is_a? SolrCore
-        @api_client.create solr_core
+        return false unless solr_core.valid?
+        @api_client.name = solr_core.name
+        @api_client.solr_version = solr_core.solr_version
+        @api_client.schema = solr_core.schema
+        @api_client.system = solr_core.system
+        @api_client.create
       end
 
       def destroy_solr_core(solr_core)
