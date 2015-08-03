@@ -14,4 +14,11 @@ describe HostedSolr::API::SolrCore do
       expect(subject).to validate_presence_of(attribute_name)
     end
   end
+
+  [:id, :solr_version, :system, :schema, :name, :internal_name, :password, :is_activated, :created_at, :updated_at].each do |attribute_name|
+    it "accepts an attribute #{attribute_name} when initialize from a hash" do
+      core = HostedSolr::API::SolrCore.from_hash(attribute_name.to_s => 'some value')
+      expect(core.send(attribute_name)).to eq 'some value'
+    end
+  end
 end
