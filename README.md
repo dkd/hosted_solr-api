@@ -1,41 +1,105 @@
 # HostedSolr::Api
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/hosted_solr/api`. To experiment with that code, run `bin/console` for an interactive prompt.
+This Rubygem allows convient access to [Hosted Solr](https://www.hosted-solr.com/) API. You can create new Solr Cores, check the status of your Solr Cores and delete them as well.
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-```ruby
-gem 'hosted_solr-api'
+```Ruby
+gem 'hosted_solr-api', '~> 0.1'
 ```
 
 And then execute:
 
-    $ bundle
+```Shell
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install hosted_solr-api
+```Shell
+$ gem install hosted_solr-api
+```
+
 
 ## Usage
 
-TODO: Write usage instructions here
+### Configuration
 
-## Development
+You need to configure your API and Secret Tokens, which you find in your [Hosted Solr profile](https://www.hosted-solr.com/account/api_credentials). There are two ways to accomplish this:
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+1. Either set enviromental variables like this (e.g. Ubuntu):
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```Shell
+export HOSTED_SOLR_API_TOKEN=your-api-token
+export HOSTED_SOLR_SECRET_TOKEN=your-secret-token
+```
+
+2. Set your tokens Rails-like in an included config file (`config/initializers/hosted_solr_api.rb`):
+
+```Ruby
+require 'hosted_solr/api'
+
+HostedSolr::API.configure do |config|
+  config.api_token = 'your-api-token'
+  config.secret_token = 'your-secret-token'
+end
+```
+
+
+### API calls
+
+#### Create new Solr Cores
+
+Let's create a new Solr Core:
+
+```Ruby
+require 'hosted_solr/api'
+
+client = HostedSolr::API::Client.new
+
+solr_core = HostedSolr::API::SolrCore.new name: 'my-new-solr-core',
+                                          system: 'sunspot',
+                                          solr_version: '3.5',
+                                          schema: 'standard'
+
+solr_core.valid? # => true, client will only accept valid Solr Core objects
+
+client.create_solr_core solr_core
+```
+
+#### Checking status
+
+To check the status and configuration of your Cores use the following:
+ 
+```Ruby
+all_cores = client.all_solr_cores
+
+first_core = all_cores.first
+first_core.name # => 'my-new-solr-core'; assuming, we create the Core above
+first_core.id   # => 675 
+```
+
+#### Destroying Cores
+
+Existing Cores can be destroyed as well:
+
+```Ruby
+client.destroy_solr_core solr_core # either SolrCore object or id
+```
+
+### Available Core Configuration
+
+FIXME
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/hosted_solr-api.
+Bug reports and pull requests are welcome on [GitHub](https://github.com/dkd/hosted_solr-api).
 
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+The Rubygem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
