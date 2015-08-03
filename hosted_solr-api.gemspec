@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'Client for Hosted Solr API'
   spec.description   = 'Allow access to Hosted Solr API.'
-  spec.homepage      = "https://github.com/dkd/hosted_solr-api"
+  spec.homepage      = 'https://github.com/dkd/hosted_solr-api'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
