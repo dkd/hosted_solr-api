@@ -1,6 +1,6 @@
 # HostedSolr::Api
 
-This Rubygem allows convient access to [Hosted Solr](https://www.hosted-solr.com/) API. You can create new Solr Cores, check the status of your Solr Cores and delete them as well.
+This Rubygem allows convient access to [Hosted Solr](https://www.hosted-solr.com/) API. You can create new Solr Cores, check the status of your Solr Cores and destroy them as well.
 
 
 ## Installation
@@ -92,7 +92,7 @@ client.destroy_solr_core solr_core # either SolrCore object or id
 
 ### Available Core Configuration
 
-FIXME
+TODO
 
 ## Contributing
 
