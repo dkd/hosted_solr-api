@@ -97,13 +97,15 @@ client.destroy_solr_core solr_core # either SolrCore object or id
 
 Only following system configurations are supported:
 
-|system|schema|solr_version|
-|:---|---:|---:|
-|`sunspot`|`standard`|`3.5`|
-|`solrbridge`|`german`|`4.9`|
-|`drupal`|`standard`|`4.8`|
-|`typo`|`german` or `english`|`3.6` or `4.8`|
-|`magento`|`german` or `english`|`3.6` or `4.8`|
+|Name|system|schema|solr_version|
+|:---|:---|---:|---:|
+|[TYPO 3](https://typo3.org/)|`typo`|`german` or `english`|`3.6` or `4.8`|
+|[Sunspot](https://sunspot.github.io/)|`sunspot`|`standard`|`3.5`|
+|[Magento](http://magento.com/)|`magento`|`german` or `english`|`3.6` or `4.8`|
+|[Magento Solr Bridge Search](http://www.magentocommerce.com/magento-connect/solr-bridge-search.html)|`solrbridge`|`german`|`4.9`|
+|[Drupal](https://www.drupal.org/)|`drupal`|`standard`|`4.8`|
+
+
 
 
 ## Contributing
