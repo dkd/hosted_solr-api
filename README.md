@@ -99,7 +99,7 @@ Only following system configurations are supported:
 
 |Name|system|schema|solr_version|
 |:---|:---|---:|---:|
-|[TYPO3](https://typo3.org/)|`typo`|`german` or `english`|`3.6` or `4.8`|
+|[TYPO3](https://typo3.org/)|`typo3`|`german` or `english`|`3.6` or `4.8`|
 |[Sunspot](https://sunspot.github.io/)|`sunspot`|`standard`|`3.5`|
 |[Magento](http://magento.com/)|`magento`|`german` or `english`|`3.6` or `4.8`|
 |[Magento Solr Bridge Search](http://www.magentocommerce.com/magento-connect/solr-bridge-search.html)|`solrbridge`|`german`|`4.9`|
