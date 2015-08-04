@@ -54,7 +54,7 @@ end
 
 ### API calls
 
-#### Create new Solr Cores
+#### 1. Create new Solr Cores
 
 Let's create a new Solr Core:
 
@@ -73,7 +73,7 @@ solr_core.valid? # => true, client will only accept valid Solr Core objects
 client.create_solr_core solr_core
 ```
 
-#### Checking status
+#### 2. Checking status of existing Solr Cores
 
 To check the status and configuration of your Cores use the following:
  
@@ -85,7 +85,7 @@ first_core.name # => 'my-new-solr-core'; assuming, we create the Core above
 first_core.id   # => 675 
 ```
 
-#### Destroying Cores
+#### 3. Destroying Solr Cores
 
 Existing Cores can be destroyed as well:
 
@@ -95,7 +95,16 @@ client.destroy_solr_core solr_core # either SolrCore object or id
 
 ### Available Core Configuration
 
-TODO
+Only following system configurations are supported:
+
+|system|schema|solr_version|
+|:---|---:|---:|
+|`sunspot`|`standard`|`3.5`|
+|`solrbridge`|`german`|`4.9`|
+|`drupal`|`standard`|`4.8`|
+|`typo`|`german` or `english`|`3.6` or `4.8`|
+|`magento`|`german` or `english`|`3.6` or `4.8`|
+
 
 ## Contributing
 
