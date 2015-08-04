@@ -76,13 +76,13 @@ client.create_solr_core solr_core
 #### 2. Checking status of existing Solr Cores
 
 To check the status and configuration of your Cores use the following:
- 
+
 ```Ruby
 all_cores = client.all_solr_cores
 
 first_core = all_cores.first
 first_core.name # => 'my-new-solr-core'; assuming, we create the Core above
-first_core.id   # => 675 
+first_core.id   # => 675
 ```
 
 #### 3. Destroying Solr Cores
@@ -99,7 +99,7 @@ Only following system configurations are supported:
 
 |Name|system|schema|solr_version|
 |:---|:---|---:|---:|
-|[TYPO 3](https://typo3.org/)|`typo`|`german` or `english`|`3.6` or `4.8`|
+|[TYPO3](https://typo3.org/)|`typo`|`german` or `english`|`3.6` or `4.8`|
 |[Sunspot](https://sunspot.github.io/)|`sunspot`|`standard`|`3.5`|
 |[Magento](http://magento.com/)|`magento`|`german` or `english`|`3.6` or `4.8`|
 |[Magento Solr Bridge Search](http://www.magentocommerce.com/magento-connect/solr-bridge-search.html)|`solrbridge`|`german`|`4.9`|
@@ -114,4 +114,3 @@ Bug reports and pull requests are welcome on [GitHub](https://github.com/dkd/hos
 ## License
 
 The Rubygem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
