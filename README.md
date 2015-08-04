@@ -56,7 +56,7 @@ end
 
 #### 1. Create new Solr Cores
 
-Let's create a new Solr Core:
+Let's create a new Solr Core (see below for configuration options):
 
 ```Ruby
 require 'hosted_solr/api'
@@ -104,8 +104,6 @@ Only following system configurations are supported:
 |[Magento](http://magento.com/)|`magento`|`german` or `english`|`3.6` or `4.8`|
 |[Magento Solr Bridge Search](http://www.magentocommerce.com/magento-connect/solr-bridge-search.html)|`solrbridge`|`german`|`4.9`|
 |[Drupal](https://www.drupal.org/)|`drupal`|`standard`|`4.8`|
-
-
 
 
 ## Contributing
