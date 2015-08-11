@@ -81,8 +81,10 @@ To check the status and configuration of your Cores use the following:
 all_cores = client.all_solr_cores
 
 first_core = all_cores.first
-first_core.name # => 'my-new-solr-core'; assuming, we create the Core above
+first_core.name # => 'my-new-solr-core'; assuming, we created the Core above
 first_core.id   # => 675
+
+first_core.connection_uri.to_s # => 'https://b9a3e9c5c85-my-little-solr-index:ec397fb47bf@97a04a.hosted-solr.com/b9a3e9c5c85-my-new-solr-core/core'
 ```
 
 #### 3. Destroying Solr Cores
