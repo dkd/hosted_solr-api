@@ -1,5 +1,5 @@
 module HostedSolr
   module API
-    VERSION = '0.3.1'
+    VERSION = '0.4.0'
   end
 end
