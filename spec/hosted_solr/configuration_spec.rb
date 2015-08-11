@@ -28,10 +28,12 @@ describe HostedSolr::API::Configuration do
   it 'falls back to env variable HOSTED_SOLR_API_TOKEN when reading the API token' do
     ENV['HOSTED_SOLR_API_TOKEN'] = 'my API token via env'
     expect(subject.api_token).to eq 'my API token via env'
+    ENV['HOSTED_SOLR_API_TOKEN'] = nil # don't let ENV setting leak into other specs
   end
 
   it 'falls back to env variable HOSTED_SOLR_SECRET_TOKEN when reading the Secret token' do
     ENV['HOSTED_SOLR_SECRET_TOKEN'] = 'my Secret token via env'
     expect(subject.secret_token).to eq 'my Secret token via env'
+    ENV['HOSTED_SOLR_SECRET_TOKEN'] = nil # don't let ENV setting leak into other specs
   end
 end

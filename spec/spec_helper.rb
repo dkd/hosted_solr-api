@@ -12,3 +12,5 @@ SimpleCov.start
 
 require 'hosted_solr/api'
 require 'shoulda/matchers'
+
+RSpec::Expectations.configuration.warn_about_potential_false_positives = false

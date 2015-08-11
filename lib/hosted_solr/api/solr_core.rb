@@ -1,4 +1,5 @@
 require 'active_model'
+require 'uri'
 
 module HostedSolr
   module API
@@ -19,6 +20,18 @@ module HostedSolr
 
       def self.from_hash(attributes_hash = {})
         new(attributes_hash.slice(*%w(id solr_version system schema name host internal_name password is_activated created_at updated_at)))
+      end
+
+      def port
+        443
+      end
+
+      def protocol
+        'https'
+      end
+
+      def connection_uri
+        URI("#{protocol}://#{internal_name}:#{password}@#{host}:#{port}/#{internal_name}/core")
       end
     end
   end
