@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'guard-rubocop', '~> 1.2'
   spec.add_development_dependency 'pry', '~> 0.10'
   spec.add_development_dependency 'pry-byebug', '~> 3.2'
-  spec.add_development_dependency 'rubocop', '~> 0.32'
+  spec.add_development_dependency 'rubocop', '~> 0.33'
   spec.add_development_dependency 'coveralls', '~> 0.8'
   spec.add_development_dependency 'growl', '~> 1.0'
   spec.add_development_dependency 'shoulda-matchers', '~> 2.8'
