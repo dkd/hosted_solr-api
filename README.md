@@ -56,7 +56,7 @@ end
 
 #### 1. Create new Solr Cores
 
-Let's create a new Solr Core (see below for configuration options):
+This Rubygem ships with preconfigured SolrCore objects of all supported systems. See section "Available Core Configurations" for more details. Let's create a first generic Solr Core:
 
 ```Ruby
 require 'hosted_solr/api'
@@ -95,17 +95,39 @@ Existing Cores can be destroyed as well:
 client.destroy_solr_core solr_core # either SolrCore object or id
 ```
 
-### Available Core Configuration
+### Available Core Configurations
 
 Only following system configurations are supported:
 
-|Name|system|schema|solr_version|
-|:---|:---|---:|---:|
-|[TYPO3](https://typo3.org/)|`typo3`|`german` or `english`|`3.6` or `4.8`|
-|[Sunspot](https://sunspot.github.io/)|`sunspot`|`standard`|`3.5`|
-|[Magento](http://magento.com/)|`magento`|`german` or `english`|`3.6` or `4.8`|
-|[Magento Solr Bridge Search](http://www.magentocommerce.com/magento-connect/solr-bridge-search.html)|`solrbridge`|`german`|`4.9`|
-|[Drupal](https://www.drupal.org/)|`drupal`|`standard`|`4.8`|
+|System|Class Name|system|schema|solr_version|
+|:---|:---|:---|---:|---:|
+|[TYPO3](https://typo3.org/extensions/repository/view/solr/)|`SolrForTypo320xSolrCore` or `SolrForTypo3301SolrCore`|`typo3`|`german` or `english`|`3.6` or `4.8`|
+|[Sunspot](https://sunspot.github.io/)|`SunspotSolrCore`|`sunspot`|`standard`|`3.5`|
+|[Magento](http://magento.com/)|`MagentoSolrCore`|`magento`|`german` or `english`|`3.6` or `4.8`|
+|[Magento Solr Bridge Search](http://www.magentocommerce.com/magento-connect/solr-bridge-search.html)|`MagentoSolrBridgeSearchSolrCore`|`solrbridge`|`german`|`4.9`|
+|[Drupal](https://www.drupal.org/)|`DrupalSolrCore`|`drupal`|`standard`|`4.8`|
+
+Every given class name is a from SolrCore rerived class, which simplifies creation of new cores. Following constructors are available:
+
+```ruby
+# Solr for TYPO3 v2.0.x
+core = SolrForTypo320xSolrCore.new 'core_name'
+
+# Solr for TYPO3 v3.0.1
+core = SolrForTypo3301SolrCore.new 'core_name'
+
+# Sunspot
+core = SunspotSolrCore.new 'core_name'
+
+# Magento
+core = MagentoSolrCore.new 'core_name', 'german', '3.6' # see available options above
+
+# Magento Solr Bridge Search
+core = MagentoSolrBridgeSearchSolrCore.new 'core_name'
+
+# Drupal
+core = DrupalSolrCore.new 'core_name'
+```
 
 
 ## Contributing
