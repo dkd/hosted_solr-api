@@ -1,10 +1,11 @@
 language: ruby
 rvm:
-  - 2.1.8
-  - 2.2.4
-  - 2.3.0
-before_install: gem install bundler -v 1.11.2
-cache:
-  - bundler
+  - 2.1.9
+  - 2.1.10
+  - 2.2
+  - 2.3.4
+  - 2.4.1
+before_install: gem install bundler
+cache: bundler
 script:
   - bundle exec rake test_with_coveralls

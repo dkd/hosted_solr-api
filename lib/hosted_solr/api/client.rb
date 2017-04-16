@@ -10,8 +10,8 @@ module HostedSolr
       include HostedSolr::API::HasConfiguration
 
       def initialize
-        fail APITokenMissingError if configuration.api_token.nil?
-        fail SecretTokenMissingError if configuration.secret_token.nil?
+        raise APITokenMissingError if configuration.api_token.nil?
+        raise SecretTokenMissingError if configuration.secret_token.nil?
         @api_client = SolrCoresAPIClient.new
       end
 
@@ -22,7 +22,7 @@ module HostedSolr
       end
 
       def create_solr_core(solr_core)
-        fail ArgumentError, 'Error: SolrCore expected!' unless solr_core.is_a? SolrCore
+        raise ArgumentError, 'Error: SolrCore expected!' unless solr_core.is_a? SolrCore
         return false unless solr_core.valid?
         @api_client.name = solr_core.name
         @api_client.solr_version = solr_core.solr_version
@@ -38,7 +38,7 @@ module HostedSolr
         when SolrCore
           id = solr_core.id
         else
-          fail ArgumentError, 'Error: SolrCore or SolrCore id expected!'
+          raise ArgumentError, 'Error: SolrCore or SolrCore id expected!'
         end
         @api_client.destroy String(id)
       end

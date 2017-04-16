@@ -1,4 +1,5 @@
 # coding: utf-8
+
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'hosted_solr/api/version'
@@ -20,8 +21,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'bundler', '~> 1.11'
-  spec.add_development_dependency 'rake', '~> 10.0'
-  spec.add_development_dependency 'rspec', '~> 3.4'
+  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rspec', '~> 3.5'
   spec.add_development_dependency 'rspec-nc', '~> 0.2'
   spec.add_development_dependency 'guard', '~> 2.13'
   spec.add_development_dependency 'guard-rspec', '~> 4.6'
@@ -33,7 +34,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'growl', '~> 1.0'
   spec.add_development_dependency 'shoulda-matchers', '~> 2.8'
 
-  spec.add_dependency 'activemodel', '~> 4.2'
-  spec.add_dependency 'activesupport', '~> 4.2'
+  spec.add_dependency 'activemodel'
+  spec.add_dependency 'activesupport'
   spec.add_dependency 'active_rest_client', '~> 1.1'
 end

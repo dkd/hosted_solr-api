@@ -19,7 +19,9 @@ module HostedSolr
       validates :system,       presence: true
 
       def self.from_hash(attributes_hash = {})
-        new(attributes_hash.slice(*%w(id solr_version system schema name host internal_name password is_activated created_at updated_at)))
+        new(attributes_hash.slice('id', 'solr_version', 'system', 'schema',
+                                  'name', 'host', 'internal_name', 'password',
+                                  'is_activated', 'created_at', 'updated_at'))
       end
 
       def port
